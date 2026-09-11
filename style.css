@@ -1,22 +1,59 @@
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb}
-header{background:#0d2a54;color:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center}
-header a{color:#fff;text-decoration:none;margin-left:15px}
-.logo{font-weight:bold;font-size:20px}
-.hero{background:#fff;padding:40px;text-align:center}
-.search{max-width:600px;margin:20px auto;display:flex}
-.search input{flex:1;padding:14px;border:2px solid #0d2a54;border-radius:8px 0 0 8px}
-.search button{padding:14px 20px;background:#0d2a54;color:#fff;border:none;border-radius:0 8px 8px 0;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding:25px;max-width:1200px;margin:auto}
-.card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.06)}
-.card h3{color:#0d2a54;border-bottom:1px solid #eee;padding-bottom:8px}
-.card ul{padding:0}
-.card li{list-style:none;padding:8px 0;display:flex;justify-content:space-between}
-.wa{background:#25D366;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}
-.dashboard{max-width:1000px;margin:30px auto;background:#fff;padding:25px;border-radius:12px}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form input,.form select,textarea{padding:12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box}
-textarea{margin-top:12px;width:100%}
-.btn{padding:14px;background:#ff7a00;color:#fff;border:none;border-radius:8px;font-weight:bold;width:100%;margin-top:12px;cursor:pointer}
-.btn-blue{background:#0d2a54}
-.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:20px}
-.profile{border:1px solid #e5e7eb;padding:15px;border-radius:10px}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProFinder CI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">ProFinder CI</div>
+  <nav>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('fr')">FR</button>
+    <a href="#client">Find a Pro</a>
+    <a href="#worker">Join as Pro</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 id="h1">Find Any Professional Near You</h1>
+  <p id="sub">Mechanic, Plumber, Cook, Driver - Book in 2 minutes</p>
+  <div class="search">
+    <input id="q" placeholder="Search e.g Plumber...">
+    <button id="searchBtn" onclick="doSearch()">Search</button>
+  </div>
+</section>
+
+<section class="grid" id="grid"></section>
+
+<section class="dashboard" id="client">
+  <h2 id="clientTitle">Client Dashboard - I Need a Service</h2>
+  <div class="form">
+    <input id="cName" placeholder="Your Name / Company">
+    <input id="cCity" placeholder="City">
+    <select id="cJob"></select>
+    <input id="cBudget" placeholder="Budget FCFA">
+    <input id="cWhatsapp" placeholder="Your WhatsApp">
+  </div>
+  <textarea id="cDesc" placeholder="Describe work..."></textarea>
+  <button class="btn" id="postBtn" onclick="postRequest()">Post Request on WhatsApp</button>
+</section>
+
+<section class="dashboard" id="worker">
+  <h2 id="workerTitle">Worker Dashboard - I Offer a Service</h2>
+  <div class="form">
+    <input id="wName" placeholder="Full Name">
+    <input id="wCity" placeholder="City">
+    <select id="wJob"></select>
+    <input id="wWhatsapp" placeholder="WhatsApp Number">
+    <input id="wRate" placeholder="Daily Rate">
+  </div>
+  <button class="btn btn-blue" id="createBtn" onclick="addWorker()">Create Profile</button>
+  <div class="profiles" id="profiles"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
