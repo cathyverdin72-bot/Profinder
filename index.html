@@ -1,59 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProFinder CI</title>
+<title>ProFinder CI - Trouvez un Pro près de vous</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <div class="logo">ProFinder CI</div>
+  <div class="logo"><img src="logo.png" onerror="this.src='profinder_ci_logo.webp'" alt="logo"> ProFinder CI</div>
   <nav>
-    <button onclick="setLang('en')">EN</button>
+    <button id="themeBtn" onclick="toggleTheme()">🌙 Dark</button>
     <button onclick="setLang('fr')">FR</button>
-    <a href="#client">Find a Pro</a>
-    <a href="#worker">Join as Pro</a>
+    <button onclick="setLang('en')">EN</button>
   </nav>
 </header>
 
 <section class="hero">
-  <h1 id="h1">Find Any Professional Near You</h1>
-  <p id="sub">Mechanic, Plumber, Cook, Driver - Book in 2 minutes</p>
+  <h1 id="h1">Trouvez un Professionnel Près de Vous</h1>
+  <p id="sub">71 métiers vérifiés • Grand-Bassam, Abidjan & toute la Côte d'Ivoire</p>
   <div class="search">
-    <input id="q" placeholder="Search e.g Plumber...">
-    <button id="searchBtn" onclick="doSearch()">Search</button>
+    <input id="q" placeholder="Rechercher ex: Plombier, Cuisinier, Nounou...">
+    <select id="cityFilter"><option value="">Toute ville</option><option>Grand-Bassam</option><option>Abidjan</option><option>Yamoussoukro</option><option>Bouaké</option></select>
+    <button id="searchBtn" onclick="doSearch()">Rechercher</button>
   </div>
+  <div class="stats"><span id="totalJobs">71</span> métiers • <span id="totalWorkers">12</span> pros en ligne ✅</div>
 </section>
+
+<div class="filters">
+  <button onclick="filterCat('all')">Tous</button>
+  <button onclick="filterCat('Automobile')">🚗 Auto</button>
+  <button onclick="filterCat('Building')">🔨 Bâtiment</button>
+  <button onclick="filterCat('Restaurant')">🍳 Resto</button>
+  <button onclick="filterCat('Cleaning')">🧹 Maison</button>
+  <button onclick="filterCat('Commerce')">🛒 Commerce</button>
+  <button onclick="filterCat('Technical')">⚙️ Technique</button>
+</div>
 
 <section class="grid" id="grid"></section>
 
 <section class="dashboard" id="client">
-  <h2 id="clientTitle">Client Dashboard - I Need a Service</h2>
+  <h2 id="clientTitle">🏢 Espace Client - J'ai Besoin d'un Service</h2>
   <div class="form">
-    <input id="cName" placeholder="Your Name / Company">
-    <input id="cCity" placeholder="City">
+    <input id="cName" placeholder="Votre Nom / Entreprise">
+    <input id="cCity" placeholder="Ville">
     <select id="cJob"></select>
     <input id="cBudget" placeholder="Budget FCFA">
-    <input id="cWhatsapp" placeholder="Your WhatsApp">
+    <input id="cWhatsapp" placeholder="Votre WhatsApp">
   </div>
-  <textarea id="cDesc" placeholder="Describe work..."></textarea>
-  <button class="btn" id="postBtn" onclick="postRequest()">Post Request on WhatsApp</button>
+  <textarea id="cDesc" placeholder="Décrivez le travail à faire..."></textarea>
+  <button class="btn" id="postBtn" onclick="postRequest()">Publier & Partager sur WhatsApp Admin</button>
 </section>
 
 <section class="dashboard" id="worker">
-  <h2 id="workerTitle">Worker Dashboard - I Offer a Service</h2>
+  <h2 id="workerTitle">👷 Espace Prestataire - Je Propose un Service</h2>
   <div class="form">
-    <input id="wName" placeholder="Full Name">
-    <input id="wCity" placeholder="City">
+    <input id="wName" placeholder="Nom Complet">
+    <input id="wCity" placeholder="Ville">
     <select id="wJob"></select>
-    <input id="wWhatsapp" placeholder="WhatsApp Number">
-    <input id="wRate" placeholder="Daily Rate">
+    <input id="wWhatsapp" placeholder="Numéro WhatsApp">
+    <input id="wRate" placeholder="Tarif Journalier">
   </div>
-  <button class="btn btn-blue" id="createBtn" onclick="addWorker()">Create Profile</button>
+  <button class="btn btn-blue" id="createBtn" onclick="addWorker()">Créer Mon Profil Professionnel</button>
+  <h3 id="liveTitle">Professionnels Disponibles - Vérifiés ✅</h3>
   <div class="profiles" id="profiles"></div>
 </section>
 
+<a href="https://wa.me/2250749382707" class="float-wa">💬</a>
 <script src="script.js"></script>
 </body>
 </html>
