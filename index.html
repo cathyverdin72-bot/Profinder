@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProFinder CI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">ProFinder CI</div>
+  <nav>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('fr')">FR</button>
+    <a href="#client">Find a Pro</a>
+    <a href="#worker">Join as Pro</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 id="h1">Find Any Professional Near You</h1>
+  <p id="sub">Mechanic, Plumber, Cook, Driver - Book in 2 minutes</p>
+  <div class="search">
+    <input id="q" placeholder="Search e.g Plumber...">
+    <button id="searchBtn" onclick="doSearch()">Search</button>
+  </div>
+</section>
+
+<section class="grid" id="grid"></section>
+
+<section class="dashboard" id="client">
+  <h2 id="clientTitle">Client Dashboard - I Need a Service</h2>
+  <div class="form">
+    <input id="cName" placeholder="Your Name / Company">
+    <input id="cCity" placeholder="City">
+    <select id="cJob"></select>
+    <input id="cBudget" placeholder="Budget FCFA">
+    <input id="cWhatsapp" placeholder="Your WhatsApp">
+  </div>
+  <textarea id="cDesc" placeholder="Describe work..."></textarea>
+  <button class="btn" id="postBtn" onclick="postRequest()">Post Request on WhatsApp</button>
+</section>
+
+<section class="dashboard" id="worker">
+  <h2 id="workerTitle">Worker Dashboard - I Offer a Service</h2>
+  <div class="form">
+    <input id="wName" placeholder="Full Name">
+    <input id="wCity" placeholder="City">
+    <select id="wJob"></select>
+    <input id="wWhatsapp" placeholder="WhatsApp Number">
+    <input id="wRate" placeholder="Daily Rate">
+  </div>
+  <button class="btn btn-blue" id="createBtn" onclick="addWorker()">Create Profile</button>
+  <div class="profiles" id="profiles"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
