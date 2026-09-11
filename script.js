@@ -1,12 +1,90 @@
 const jobs = {
-"Automobile & Maintenance":["Mechanic","Auto Electrician","Panel Beater","Car Washer"],
-"Building & Construction":["Mason","Plumber","Building Electrician","Tiler","Painter","Carpenter","Welder"],
-"Restaurant & Hotel":["Cook","Baker","Waiter","Barman","Housekeeping"],
-"Home Services":["Cleaner","House Help","Nanny","Gardener","Security Guard","Driver"],
-"Commerce":["Sales Rep","Secretary","Accountant","Storekeeper"],
-"Technical":["Maintenance Technician","Industrial Electrician","Machine Operator"]
+"Automobile & Maintenance / Automobile et Entretien": [
+  "Mécanicien / Mechanic",
+  "Électricien Auto / Auto Electrician",
+  "Électromécanicien / Electromechanic",
+  "Technicien Diagnostic / Diagnostic Technician",
+  "Tôlier - Carrossier / Bodywork Panel Beater",
+  "Peintre Automobile / Automotive Painter",
+  "Technicien Climatisation Auto / Air Conditioning Technician",
+  "Spécialiste Pneus / Tire Specialist",
+  "Laveur Auto / Car Washer",
+  "Spécialiste Detailing / Detailing Specialist"
+],
+"Bâtiment & Construction / Building & Construction": [
+  "Maçon / Bricklayer",
+  "Plombier / Plumber",
+  "Électricien Bâtiment / Building Electrician",
+  "Chef de Chantier / Site Foreman",
+  "Conducteur de Travaux / Site Manager",
+  "Carreleur / Tiler",
+  "Peintre Bâtiment / Building Painter",
+  "Menuisier / Carpenter",
+  "Soudeur / Welder",
+  "Ferrailleur / Steel Fixer",
+  "Coffreur / Formwork Carpenter",
+  "Staffeur - Plâtrier / Plasterer",
+  "Installateur Sanitaire / Sanitary Installer",
+  "Froid et Climatisation / Refrigeration Technician",
+  "Manœuvre / General Laborer"
+],
+"Restauration & Hôtellerie / Restaurant & Hotel": [
+  "Cuisinier / Cook",
+  "Chef Cuisinier / Head Chef",
+  "Pâtissier / Pastry Chef",
+  "Boulanger / Baker",
+  "Serveur / Serveuse / Waiter/Waitress",
+  "Maître d'Hôtel",
+  "Barman / Bartender",
+  "Caissier / Cashier",
+  "Réceptionniste / Receptionist",
+  "Hôtesse / Host",
+  "Plongeur / Dishwasher",
+  "Responsable Salle / Dining Room Manager",
+  "Livreur / Delivery Person",
+  "Gouvernante / Housekeeping Manager",
+  "Femme de Chambre / Room Attendant"
+],
+"Entretien & Services à Domicile / Cleaning & Home Services": [
+  "Agent de Nettoyage / Cleaning Agent",
+  "Femme de Ménage / Housekeeper",
+  "Aide Ménagère / House Help",
+  "Repasseur / Ironing Person",
+  "Agent Pressing / Dry Cleaning Agent",
+  "Nounou / Nanny - Babysitter",
+  "Aide Familiale / Family Assistant",
+  "Jardinier / Gardener",
+  "Gardien / Guard - Security Agent",
+  "Chauffeur Privé / Private Driver"
+],
+"Commerce & Administration / Commerce & Administration": [
+  "Commercial / Sales Rep",
+  "Agent Commercial / Sales Agent",
+  "Chef des Ventes / Sales Manager",
+  "Conseiller Clientèle / Customer Advisor",
+  "Vendeur / Salesperson",
+  "Assistant Administratif / Administrative Assistant",
+  "Secrétaire / Secretary",
+  "Réceptionniste / Receptionist",
+  "Gestionnaire de Stock / Stock Manager",
+  "Magasinier / Storekeeper",
+  "Comptable / Accountant",
+  "Responsable Magasin / Store Manager"
+],
+"Technique, Industrie & Maintenance / Technical, Industry & Maintenance": [
+  "Technicien de Maintenance / Maintenance Technician",
+  "Électricien Industriel / Industrial Electrician",
+  "Mécanicien Industriel / Industrial Mechanic",
+  "Soudeur Industriel / Welder",
+  "Chaudronnier / Boilermaker",
+  "Technicien Frigoriste / Refrigeration Technician",
+  "Technicien Machines / Machinery Technician",
+  "Conducteur de Machines / Machine Operator",
+  "Contrôleur Qualité / Quality Controller"
+]
 };
 
+// This will auto-fill all dropdowns and cards with the 71 jobs
 const grid = document.getElementById('grid');
 const cJob = document.getElementById('cJob');
 const wJob = document.getElementById('wJob');
@@ -23,31 +101,4 @@ Object.keys(jobs).forEach(cat=>{
   html+=`</ul>`; card.innerHTML=html; grid.appendChild(card);
 });
 
-function doSearch(){
- let q=document.getElementById('q').value.toLowerCase();
- document.querySelectorAll('.card li').forEach(li=>{li.style.display=li.textContent.toLowerCase().includes(q)?'flex':'none'})
-}
-function selectJob(j){cJob.value=j; document.getElementById('client').scrollIntoView({behavior:'smooth'});}
-function contactWA(job){
- window.open(`https://wa.me/2250700000000?text=Hello ProFinder, I need a ${job}`,'_blank');
-}
-function postRequest(){
- let job=cJob.value; let city=document.getElementById('cCity').value;
- window.open(`https://wa.me/2250700000000?text=NEW REQUEST: ${job} in ${city}`,'_blank');
-}
-let workers=[];
-function addWorker(){
- let name=document.getElementById('wName').value;
- let city=document.getElementById('wCity').value;
- let job=wJob.value;
- let wa=document.getElementById('wWhatsapp').value;
- workers.push({name,city,job,wa});
- let div=document.getElementById('profiles');
- div.innerHTML+=`<div class="profile"><b>${name}</b><br>${job} - ${city}<br><a href="https://wa.me/${wa}" target="_blank"><button class="wa">Contact on WhatsApp</button></a></div>`;
-}
-function setLang(l){
- if(l==='fr'){
-   document.getElementById('h1').innerText="Trouvez un Professionnel Près de Vous";
-   document.getElementById('sub').innerText="Mécanicien, Plombier, Cuisinier - Réservez en 2 minutes";
- }
-}
+console.log("Total professions loaded: ", document.querySelectorAll('#cJob option').length - 1);
