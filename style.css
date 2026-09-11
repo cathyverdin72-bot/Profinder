@@ -1,59 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProFinder CI</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header>
-  <div class="logo">ProFinder CI</div>
-  <nav>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('fr')">FR</button>
-    <a href="#client">Find a Pro</a>
-    <a href="#worker">Join as Pro</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1 id="h1">Find Any Professional Near You</h1>
-  <p id="sub">Mechanic, Plumber, Cook, Driver - Book in 2 minutes</p>
-  <div class="search">
-    <input id="q" placeholder="Search e.g Plumber...">
-    <button id="searchBtn" onclick="doSearch()">Search</button>
-  </div>
-</section>
-
-<section class="grid" id="grid"></section>
-
-<section class="dashboard" id="client">
-  <h2 id="clientTitle">Client Dashboard - I Need a Service</h2>
-  <div class="form">
-    <input id="cName" placeholder="Your Name / Company">
-    <input id="cCity" placeholder="City">
-    <select id="cJob"></select>
-    <input id="cBudget" placeholder="Budget FCFA">
-    <input id="cWhatsapp" placeholder="Your WhatsApp">
-  </div>
-  <textarea id="cDesc" placeholder="Describe work..."></textarea>
-  <button class="btn" id="postBtn" onclick="postRequest()">Post Request on WhatsApp</button>
-</section>
-
-<section class="dashboard" id="worker">
-  <h2 id="workerTitle">Worker Dashboard - I Offer a Service</h2>
-  <div class="form">
-    <input id="wName" placeholder="Full Name">
-    <input id="wCity" placeholder="City">
-    <select id="wJob"></select>
-    <input id="wWhatsapp" placeholder="WhatsApp Number">
-    <input id="wRate" placeholder="Daily Rate">
-  </div>
-  <button class="btn btn-blue" id="createBtn" onclick="addWorker()">Create Profile</button>
-  <div class="profiles" id="profiles"></div>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
+*{box-sizing:border-box}
+:root{--navy:#0d2a54;--orange:#ff7a00;--bg:#f5f7fb;--card:#fff;--text:#111;--border:#e5e7eb}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-weight:800;font-size:18px;display:flex;align-items:center;gap:8px}
+.logo img{height:32px;width:32px;object-fit:contain;background:#fff;border-radius:6px;padding:2px}
+header nav{display:flex;gap:6px}
+header nav button, header nav a{padding:6px 10px;border:none;border-radius:20px;background:#fff;color:var(--navy);font-weight:700;font-size:12px;cursor:pointer;text-decoration:none}
+.hero{background:var(--card);padding:32px 16px;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:28px;margin:0 0 8px;font-weight:900;color:var(--navy)}
+.search{max-width:700px;margin:18px auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.search input,.search select{flex:1;min-width:140px;padding:12px 14px;border:2px solid var(--navy);border-radius:10px;font-size:14px}
+.search button{padding:12px 20px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+.stats{color:var(--orange);font-weight:800;margin-top:8px}
+.filters{max-width:1200px;margin:12px auto;display:flex;gap:8px;overflow-x:auto;padding:0 12px 8px}
+.filters button{padding:7px 14px;border:1px solid var(--border);background:var(--card);border-radius:20px;white-space:nowrap;cursor:pointer;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:14px;max-width:1250px;margin:0 auto}
+.card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.06);border:1px solid var(--border)}
+.card h3{margin:0 0 10px;color:var(--navy);font-size:16px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.card ul{padding:0;margin:0;list-style:none}
+.card li{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #eee;font-size:14px}
+.wa{background:#25D366;color:#fff;border:none;padding:6px 12px;border-radius:20px;font-weight:700;font-size:12px;cursor:pointer}
+.dashboard{max-width:1100px;margin:20px auto;background:var(--card);padding:18px;border-radius:14px;border:1px solid var(--border)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form input,.form select,textarea{padding:11px;border:1px solid var(--border);border-radius:10px;width:100%;font-size:14px}
+.btn{padding:13px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:800;width:100%;margin-top:10px;cursor:pointer}
+.btn-blue{background:var(--navy)}
+.profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:14px}
+.profile{border:1px solid var(--border);padding:14px;border-radius:12px;background:var(--bg);position:relative;font-size:14px}
+.dark{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--border:#334155}
+.dark .hero h1,.dark .card h3{color:#fff}
+@media(max-width:600px){.form{grid-template-columns:1fr}.hero h1{font-size:22px}}
